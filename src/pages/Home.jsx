@@ -31,13 +31,15 @@ const handleSearch = (e) =>{
             
         </form>
 
+    <h2>Water Color</h2>
         <div className="arts-grid">
             {arts.filter((art) => (art.medium) === "Water Color").map((art) => 
             (art.title.toLowerCase().startsWith(searchQuery)) &&
             (<ArtCard art={art} key={art.id}/>)
             )}
         </div>
-
+<hr></hr>
+    <h2>Oil</h2>
         <div className="arts-grid">
             {arts.map((art) => (art.title.toLowerCase().startsWith(searchQuery)) &&
                 (<ArtCard art={art} key={art.id}/>
