@@ -1,4 +1,3 @@
-import '../css/MovieCard.css'
 import { useArtContext } from '../context/ArtContext'
 
 function ArtCard({art}){
@@ -11,19 +10,47 @@ function ArtCard({art}){
         else addToFavorites(art)
     }
 
-    return <div className="art-card">
-        <div className="art">
-            <img src={art.image} alt={art.title} />
-            <div className="art-overlay">
-                <button className={`heart-btn ${favorite ? "active": ""}`} onClick={onHeartClick}>
-                    ♡
-                </button>
+    return <div className="
+            bg-[#3A3432] 
+            rounded-2xl
+            hover:scale-105 
+            transition-transform duration-300 ease-in-out
+            p-4">
+        <div className="
+             relative
+             aspect-auto">
+            <img className="rounded-xl w-full" 
+            src={art.image} alt={art.title} />
+            
+            <div>
+<button 
+  className={`
+    absolute top-4 right-4 
+    text-2xl p-2 
+    bg-black/50 
+    rounded-full 
+    w-10 h-10 md:w-10 md:h-10 
+    md:text-2xl text-[1.2rem] 
+    flex items-center justify-center 
+    transition-colors duration-200 
+    hover:bg-black/80
+    ${favorite ? "text-[#ff4757]" : "text-white"}
+  `} 
+  onClick={onHeartClick}
+>
+  ♡
+</button>
             </div>
         </div>
-        <div className="art-info">
-            <h3>{art.title}</h3>
-            <p>{art.description}</p>
-            <p>{art.date}</p>
+
+        <div className="
+             flex 
+             flex-col
+             gap-3 
+             pt-4">
+            <h3 className="m-0 text-base">{art.title}</h3>
+            <p className="text-sm text-[#999]">{art.description}</p>
+            <p className="text-sm text-[#999]">{art.date}</p>
         </div>
     </div>
 }
