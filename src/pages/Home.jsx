@@ -26,6 +26,10 @@ const handleSearch = (e) =>{
          w-full 
          box-border
          ">
+    <h1 className="text-3xl font-serif text-[#ffb623] md:text-6xl text-center">
+      House Art Gallery
+    </h1>
+
         <form onSubmit={handleSearch} className="search-form">
             <input 
             type="text" 
@@ -40,12 +44,13 @@ const handleSearch = (e) =>{
                 bg-[#333] 
                 text-white
                 text-2xl 
+                m-3
                 "
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             />
         </form>
-
+<hr />
     <MediumTitle medium="Water Color"/>
         <ArtGrid arts={arts} medium="Water Color" searchQuery={searchQuery}/>
 <hr />

@@ -1,7 +1,7 @@
 
 function MediumTitle({medium}){
     return(
-        <h2 className="text-3xl font-bold underline text-[#FDFBF7]">{medium}</h2>
+        <h2 className="font-mono text-3xl text-[#FDFBF7]">{medium}</h2>
     )
 }
 
