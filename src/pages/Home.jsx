@@ -6,13 +6,50 @@ function Home(){
     const [searchQuery, setSearchQuery] = useState("")
 
     const arts = [
-        {id: 1, title: "Jm's Graduation", description: "Graduated at [this] skool", date:"2018", medium: "Color Pencil", 
-        image: new URL('../images/Objective 3 Module 1.png', import.meta.url).href },
-        {id: 2, title: "Epn 1", description: "bootiful art", date:"2014", medium: "Water Color",
-        image: new URL('../images/IM2_ERD to DDL4.jpeg', import.meta.url).href},
-        {id: 3, title: "Last Supper", description: "Last supper", date:"2012", medium: "Color Pencil"},
-        {id: 4, title: "Hand of God", description: "Jesus's Crucifixion", date:"2010", medium: "Water Color"},
-        {id:5, title:"The Making of the red wine", description: "Jesus at the feast preparing for a wine", date: "10/02/2026", medium: "Color Pencil"}
+        {id: 1, title: "Jm's Graduation", description: "Grade 6 graduation", date:"2011", medium: "Chalk", 
+        image: new URL('../images/JM1.jpeg', import.meta.url).href },
+
+        {id: 2, title: "Barkada", description: "Tunay na kaibigan", date:"2020", medium: "Water Color",
+        image: new URL('../images/Barkada.jpeg', import.meta.url).href},
+
+        {id: 3, title: "Tumbang Preso", description: "Masayang hapon", date:"2020", medium: "Water Color",
+        image:new URL('../images/BatoLata.jpeg', import.meta.url).href},
+
+        {id: 4, title: "The Lady of Shalott", description: "Woman in boat under a magic curse and drifts toward her tragic fate", date:"2017", medium: "Oil",
+        image:new URL('../images/GirlInBoat.jpeg', import.meta.url).href},
+
+        {id:5, title:"Hunting Eagle", description: "An eagle getting its lunch", date: "2020", medium: "Water Color",
+        image: new URL('../images/HuntingEagle.jpeg', import.meta.url).href},
+
+        {id:6, title:"Beautiful Wife", description: "Portrait of beauty", date: "2017", medium: "Water Color",
+        image: new URL('../images/Josephine1.jpeg', import.meta.url).href},
+
+        {id:7, title:"Pretty Lady", description: "Beautiful portrait", date: "2015", medium: "Chalk",
+        image: new URL('../images/Josephine2.jpeg', import.meta.url).href},
+
+        {id:8, title:"Happy Wife", description: "A smile worth fighting for", date: "2016", medium: "Chalk",
+        image: new URL('../images/Josephine3.jpeg', import.meta.url).href},
+
+        {id:9, title:"Handsome Son", description: "One of the Jose", date: "2017", medium: "Chalk",
+        image: new URL('../images/JR1.jpeg', import.meta.url).href},
+
+        {id:10, title:"Last Supper", description: "Last supper with Christ and his disciples", date: "2012", medium: "Oil",
+        image: new URL('../images/LastSupper.jpeg', import.meta.url).href},
+
+        {id:11, title:"Making of wine", description: "Jesus making wine for a wedding", date: "2025", medium: "Oil",
+        image: new URL('../images/MakingOfWine.jpeg', import.meta.url).href},
+
+        {id:12, title:"Oslob", description: "Cooking place during Oslob", date: "2017", medium: "Oil",
+        image: new URL('../images/Oslob.jpeg', import.meta.url).href},
+
+        {id:13, title:"Tirador", description: "Libreng mangga", date: "2021", medium: "Water Color",
+        image: new URL('../images/Tirador.jpeg', import.meta.url).href},
+
+        {id:14, title:"Tricycle", description: "Family Tricycle", date: "2021", medium: "Water Color",
+        image: new URL('../images/Tricycle.jpeg', import.meta.url).href},
+
+        {id:15, title:"Hand Of God", description: "The crucifixion of Christ", date: "2010", medium: "Oil",
+        image: new URL('../images/HandOfGod.jpeg', import.meta.url).href},
     ]
 
 const handleSearch = (e) =>{
@@ -54,9 +91,12 @@ const handleSearch = (e) =>{
     <MediumTitle medium="Water Color"/>
         <ArtGrid arts={arts} medium="Water Color" searchQuery={searchQuery}/>
 <hr />
-    <MediumTitle medium="Color Pencil"/>
-        <ArtGrid arts={arts} medium="Color Pencil" searchQuery={searchQuery}/>
-    
+    <MediumTitle medium="Chalk"/>
+        <ArtGrid arts={arts} medium="Chalk" searchQuery={searchQuery}/>
+<hr />
+    <MediumTitle medium="Oil"/>
+        <ArtGrid arts={arts} medium="Oil" searchQuery={searchQuery}/>
+
     </div>)
 }
 
