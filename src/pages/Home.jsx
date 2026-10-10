@@ -1,9 +1,15 @@
 import {useState} from "react"
 import MediumTitle from "../components/MediumTitle"
 import ArtGrid from "../components/ArtGrid"
+import { useArtContext } from "../context/ArtContext"
 
 function Home(){
     const [searchQuery, setSearchQuery] = useState("")
+    const [emailInput, setEmailInput] = useState("")
+    const [usernameInput, setUsernameInput] = useState("")
+    const [isRegistering, setIsRegistering] = useState(false)
+
+    const { user, login, logout, cart } = useArtContext()
 
     const arts = [
         {id: 1, title: "Jm's Graduation", description: "Grade 6 graduation", date:"2011", medium: "Chalk", 
@@ -52,51 +58,111 @@ function Home(){
         image: new URL('../images/HandOfGod.jpeg', import.meta.url).href},
     ]
 
-const handleSearch = (e) =>{
-    e.preventDefault()
-    alert(searchQuery)
-}
+    const handleAuthSubmit = (e) => {
+        e.preventDefault()
+        if (!emailInput) return
+        const username = usernameInput.trim() || emailInput.split("@")[0]
+        login(username, emailInput)
+        setEmailInput("")
+        setUsernameInput("")
+    }
+
+    const handleSearch = (e) =>{
+        e.preventDefault()
+        alert(searchQuery)
+    }
 
     return (
     <div className="
-         py-8
-         w-full 
-         box-border
-         ">
-    <h1 className="text-3xl font-serif text-[#ffb623] md:text-6xl text-center">
-      House Art Gallery
-    </h1>
+        py-8
+        w-full 
+        box-border
+        text-white
+        ">
+        {/* User Auth & Cart Status Header */}
+        <div className="flex flex-col md:flex-row justify-between items-center px-6 mb-6 gap-4">
+            <div>
+                {user ? (
+                    <p className="text-lg">
+                        Welcome, <span className="text-[#ffb623] font-bold">{user.username}</span> | Cart: <span className="font-bold text-[#ffb623]">{cart.length} items</span>
+                    </p>
+                ) : (
+                    <p className="text-gray-400 text-sm">Please log in or create an account to add items to your cart.</p>
+                )}
+            </div>
+            <div>
+                {user ? (
+                    <button onClick={logout} className="bg-red-600 px-4 py-2 rounded-xl text-white font-semibold text-sm cursor-pointer">
+                        Logout
+                    </button>
+                ) : (
+                    <form onSubmit={handleAuthSubmit} className="flex flex-wrap gap-2 items-center">
+                        {isRegistering && (
+                            <input 
+                                type="text" 
+                                placeholder="Username" 
+                                value={usernameInput} 
+                                onChange={(e) => setUsernameInput(e.target.value)}
+                                className="px-3 py-2 rounded-xl bg-[#3A3432] text-white border-none text-sm outline-none"
+                            />
+                        )}
+                        <input 
+                            type="email" 
+                            placeholder="Email address" 
+                            value={emailInput} 
+                            onChange={(e) => setEmailInput(e.target.value)}
+                            className="px-3 py-2 rounded-xl bg-[#3A3432] text-white border-none text-sm outline-none"
+                            required
+                        />
+                        <button type="submit" className="bg-[#ffb623] text-black px-4 py-2 rounded-xl font-bold text-sm cursor-pointer">
+                            {isRegistering ? "Sign Up" : "Login"}
+                        </button>
+                        <button 
+                            type="button" 
+                            onClick={() => setIsRegistering(!isRegistering)} 
+                            className="text-xs text-gray-400 underline ml-2 cursor-pointer"
+                        >
+                            {isRegistering ? "Have an account? Login" : "Create account"}
+                        </button>
+                    </form>
+                )}
+            </div>
+        </div>
 
-        <form onSubmit={handleSearch} className="search-form">
+        <h1 className="text-3xl font-serif text-[#ffb623] md:text-6xl text-center">
+            House Art Gallery
+        </h1>
+
+        <form onSubmit={handleSearch} className="search-form flex justify-center">
             <input 
-            type="text" 
-            placeholder="Search.." 
-            className="
-                flex-1
-                center
-                px-6
-                py-4
-                border-none 
-                rounded-2xl 
-                bg-[#333] 
-                text-white
-                text-2xl 
-                m-3
-                "
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+                type="text" 
+                placeholder="Search.." 
+                className="
+                    flex-1
+                    max-w-xl
+                    px-6
+                    py-4
+                    border-none 
+                    rounded-2xl 
+                    bg-[#3A3432] 
+                    text-white
+                    text-2xl 
+                    m-3
+                    outline-none
+                    "
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
             />
         </form>
-<hr />
-    <MediumTitle medium="Water Color"/>
-        <ArtGrid arts={arts} medium="Water Color" searchQuery={searchQuery}/>
-<hr />
-    <MediumTitle medium="Chalk"/>
-        <ArtGrid arts={arts} medium="Chalk" searchQuery={searchQuery}/>
-<hr />
-    <MediumTitle medium="Oil"/>
-        <ArtGrid arts={arts} medium="Oil" searchQuery={searchQuery}/>
-
+        <hr className="border-gray-700 my-6" />
+        <MediumTitle medium="Water Color"/>
+            <ArtGrid arts={arts} medium="Water Color" searchQuery={searchQuery}/>
+        <hr className="border-gray-700 my-6" />
+        <MediumTitle medium="Chalk"/>
+            <ArtGrid arts={arts} medium="Chalk" searchQuery={searchQuery}/>
+        <hr className="border-gray-700 my-6" />
+        <MediumTitle medium="Oil"/>
+            <ArtGrid arts={arts} medium="Oil" searchQuery={searchQuery}/>
     </div>)
 }
 
